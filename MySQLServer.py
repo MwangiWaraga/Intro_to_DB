@@ -10,8 +10,9 @@ try:
 
     print("Database connection open sucessfully")
 
-except Error as e:
-    print(e)
+except mysql.connector.Error as e:
+    print(f"Error: {e}")
+
 
 
 mycursor = mydb.cursor()
