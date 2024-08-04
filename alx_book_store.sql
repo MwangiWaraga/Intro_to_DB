@@ -1,0 +1,52 @@
+-- Creating alx_book_store database
+CREATE DATABASE IF NOT EXISTS alx_book_store;
+
+-- Creating books table
+
+CREATE TABLE IF NOT EXISTS Books(
+    book_id PRIMARY KEY,
+    title VARCHAR(130),
+    author_id INT,
+    price DOUBLE,
+    publication_date DATE,
+    FOREIGN KEY (author_id) REFERENCES Authors(author_id)
+);                 
+
+
+-- Creating authors table
+
+CREATE TABLE IF NOT EXISTS Authors(
+    author_id PRIMARY KEY,
+    author_name VARCHAR(215)
+);
+
+
+-- Create customers table
+
+CREATE TABLE IF NOT EXISTS Customers(
+    customer_id PRIMARY KEY,
+    customer_name VARCHAR(215),
+    email VARCHAR(215),
+    address TEXT
+);
+
+-- Create Orders table
+
+CREATE TABLE IF NOT EXISTS Orders(
+    order_id PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+
+-- Creatig order details table
+
+CREATE TABLE IF  NOT EXISTS Order_Details(
+    order_detail_id PRIMARY KEY,
+    order_id INT,
+    book_id INT,
+    quantity DOUBLE
+    FOREIGN KEY order_id REFERENCES Orders(order_id),
+    FOREIGN book_id REFERENCES Books(book_id)
+);
+
